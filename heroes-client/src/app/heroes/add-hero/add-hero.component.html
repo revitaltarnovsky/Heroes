@@ -1,0 +1,57 @@
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-4">
+      <form
+        [formGroup]="addHeroForm"
+        (ngSubmit)="addHeroForm.valid && addHero()"
+        autocomplete="off"
+      >
+        <h2 class="text-center text-primary">Add Hero</h2>
+        <hr />
+        <app-text-input [formControl]='addHeroForm.controls["name"]' [label]='"Hero name"'></app-text-input>
+        <div class="form-group">
+          <select
+            formControlName="ability"
+            [class.is-invalid]="
+              addHeroForm.get('ability').errors &&
+              addHeroForm.get('ability').touched
+            "
+          >
+            <option [ngValue]="null">Select ability</option>
+            <option *ngFor="let ability of abilityTypes" [ngValue]="ability">{{ getAbilityTypeName(ability) }}</option>
+          </select>
+          <div class="invalid-feedback">Please select ability</div>
+        </div>
+        <div class="form-group">
+          <select
+            formControlName="suitColors"
+            [class.is-invalid]="
+              addHeroForm.get('suitColors').errors &&
+              addHeroForm.get('suitColors').touched
+            "
+          >
+            <option [ngValue]="null">Select color</option>
+            <option *ngFor="let color of colorNames" [ngValue]="color">{{ getColorName(color) }}</option>
+          </select>
+          <div class="invalid-feedback">Please select suit color</div>
+        </div>
+        <div class="row" *ngIf="validationErrors.length > 0">
+          <ul class="text-danger">
+            <li *ngFor="let error of validationErrors">
+              {{ error }}
+            </li>
+          </ul>
+        </div>
+        <div class="form-group text-center">
+          <button
+            [disabled]="!addHeroForm.valid"
+            class="btn btn-success mr-2"
+            type="submit"
+          >
+            Add Hero
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

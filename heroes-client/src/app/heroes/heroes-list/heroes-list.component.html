@@ -1,0 +1,26 @@
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <h2 class="text-center mt-3 mb-5">Our Heroes</h2>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col d-flex justify-content-end align-items-center mb-5">
+      <button class="text-center btn btn-primary" routerLink="./add">+ Add Hero</button>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-4" *ngFor="let hero of heroes">
+      <div class="card mb-4">
+        <div class="card-body p-1">
+          <h6 class="card-title text-center mb-1">
+            <i class="fa fa-user mr-2"></i>{{ hero.name | titlecase}}
+          </h6>
+          <p class="card-text text-muted text-center">
+            Current Power: {{ hero.currentPower }}%
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
